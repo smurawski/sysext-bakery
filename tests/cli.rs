@@ -1,10 +1,23 @@
 use assert_cmd::Command;
+use rand::{distributions::Alphanumeric, Rng};
+
+fn random_string() -> String {
+    rand::thread_rng()
+        .sample_iter(&Alphanumeric)
+        .take(7)
+        .map(char::from)
+        .collect()
+}
 
 #[test]
 fn cli_runs() {
+    let random_name = format!("test-sample-{}", random_string());
+
     let mut cmd = Command::cargo_bin("bakery").unwrap();
-    cmd.arg("test-sample");
+    cmd.arg(&random_name);
     cmd.assert().success();
+    
+    std::fs::remove_dir_all(&random_name).unwrap();
 }
 
 #[test]
@@ -15,15 +28,21 @@ fn cli_fails_on_missing_name() {
 
 #[test]
 fn cli_succeeds_with_os() {
+    let random_name = format!("test-sample-{}", random_string());
+
     let mut cmd = Command::cargo_bin("bakery").unwrap();
-    cmd.arg("test-sample").arg("--os").arg("debian");
+    cmd.arg(&random_name).arg("--os").arg("debian");
     cmd.assert().success();
+
+    std::fs::remove_dir_all(&random_name).unwrap();
 }
 
 #[test]
 fn cli_fails_on_unknown_arch() {
+    let random_name = format!("test-sample-{}", random_string());
+
     let mut cmd = Command::cargo_bin("bakery").unwrap();
-    cmd.arg("test-sample").arg("--arch").arg("unknown");
+    cmd.arg(&random_name).arg("--arch").arg("unknown");
     cmd.assert().failure();
 }
 
