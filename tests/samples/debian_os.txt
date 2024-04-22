@@ -1,0 +1,2 @@
+ID=debian
+SYSEXT_LEVEL=1.0

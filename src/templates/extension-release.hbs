@@ -1,0 +1,15 @@
+ID={{os}}
+{{#if (ne os "_any")}}
+SYSEXT_LEVEL=1.0
+{{/if ~}}
+{{#if arch}}
+{{#if (or (eq arch "X86_64") (eq arch "Amd64"))}}
+ARCHITECTURE=x86_64
+{{/if ~}}
+{{#if (eq arch "Aarch64")}}
+ARCHITECTURE=arm64
+{{/if ~}}
+{{/if ~}}
+{{#if reload}}
+EXTENSION_RELOAD_MANAGER=1
+{{/if ~}}

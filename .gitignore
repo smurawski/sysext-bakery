@@ -1,3 +1,4 @@
 *.raw
 *.tgz
 *.tar.gz
+target/*
