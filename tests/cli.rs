@@ -66,8 +66,9 @@ fn extension_release_any_os() {
     cmd.arg(&name).arg("--os").arg("_any");
     cmd.assert().success();
 
+    let actual_path = format!("{}/usr/lib/extension-release.d/extension-release.{}", &name, &name);
     let expected = std::fs::read_to_string("tests/samples/_any_os.txt").unwrap();
-    let actual = std::fs::read_to_string("test-any/usr/lib/extension-release.d/extension-release.test-any").unwrap();
+    let actual = std::fs::read_to_string(&actual_path).unwrap();
     
     cleanup(&name);
     assert_eq!(actual, expected);
@@ -80,8 +81,10 @@ fn extension_release_debian_os() {
     cmd.arg(&name).arg("--os").arg("debian");
     cmd.assert().success();
 
+    let actual_path = format!("{}/usr/lib/extension-release.d/extension-release.{}", &name, &name);
     let expected = std::fs::read_to_string("tests/samples/debian_os.txt").unwrap();
-    let actual = std::fs::read_to_string("test-debian/usr/lib/extension-release.d/extension-release.test-debian").unwrap();
+    let actual = std::fs::read_to_string(&actual_path).unwrap();
+
     cleanup(&name);
     assert_eq!(actual, expected);
 }
@@ -93,21 +96,24 @@ fn extension_release_any_os_x86_64_arch() {
     cmd.arg(&name).arg("--os").arg("_any").arg("--arch").arg("x86-64");
     cmd.assert().success();
 
+    let actual_path = format!("{}/usr/lib/extension-release.d/extension-release.{}", &name, &name);
     let expected = std::fs::read_to_string("tests/samples/_any_os_x86_64_arch.txt").unwrap();
-    let actual = std::fs::read_to_string("test-any-x86_64/usr/lib/extension-release.d/extension-release.test-any-x86_64").unwrap();
+    let actual = std::fs::read_to_string(&actual_path).unwrap();
+
     cleanup(&name);
     assert_eq!(actual, expected);
 }
 
 #[test]
-fn extension_release_any_os_aarch_arch() {
-    let name = "test-any-aarch";
+fn extension_release_any_os_aarch64_arch() {
+    let name = "test-any-aarch64";
     let mut cmd = Command::cargo_bin("bakery").unwrap();
     cmd.arg(&name).arg("--os").arg("_any").arg("--arch").arg("aarch64");
     cmd.assert().success();
 
+    let actual_path = format!("{}/usr/lib/extension-release.d/extension-release.{}", &name, &name);
     let expected = std::fs::read_to_string("tests/samples/_any_os_aarch64_arch.txt").unwrap();
-    let actual = std::fs::read_to_string("test-any-aarch64/usr/lib/extension-release.d/extension-release.test-any-aarch64").unwrap();
+    let actual = std::fs::read_to_string(&actual_path).unwrap();
     cleanup(&name);
     assert_eq!(actual, expected);
 }
