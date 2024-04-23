@@ -1,11 +1,10 @@
 mod find_command;
 use find_command::find_command;
 
-use std::{path::PathBuf, process::ExitStatus};
-use log::{trace, debug};
-use duct::{cmd, ReaderHandle};
 use anyhow::Result;
-
+use duct::{cmd, ReaderHandle};
+use log::{debug, trace};
+use std::{path::PathBuf, process::ExitStatus};
 
 #[derive(Clone, Debug)]
 pub struct Command<'a> {
