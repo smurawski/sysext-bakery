@@ -1,5 +1,5 @@
 mod find_command;
-pub use find_command::find_command;
+use find_command::find_command;
 
 use std::{path::PathBuf, process::ExitStatus};
 use log::{trace, debug};

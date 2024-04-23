@@ -2,12 +2,12 @@ use clap::{Parser, ValueEnum, ArgAction};
 use env_logger::Env;
 use handlebars::Handlebars;
 use serde::Serialize;
-use std::{fs::{self, File}, io::Write, os::linux::raw, path::PathBuf, vec};
+use std::{fs::{self, File}, io::Write, path::PathBuf, vec};
 use lazy_static::lazy_static;
 use anyhow::Result;
 
 mod commands;
-use commands::{find_command, Command};
+use commands::Command;
 
 #[derive(Parser, Serialize)]
 #[command(version, about, long_about = None)]
