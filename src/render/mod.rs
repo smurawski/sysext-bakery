@@ -5,10 +5,8 @@ use std::collections::HashMap;
 
 pub fn render_templates(cli: &RenderCli) {
     let mut render_file = BakeCliRenderFile::new();
-    if cli.template_file.is_none() {
-        let config = std::fs::read_to_string("./config.yml").unwrap();
-        render_file = BakeCliRenderFile::from_yaml(&config);
-    } else {
+
+    if cli.template_file.is_some() {
         let mut file = BakeCliRenderFileValues::default();
         file.template_path = cli.template_file.as_ref().unwrap().clone();
         file.output_path = cli.output_file.clone();
@@ -21,7 +19,15 @@ pub fn render_templates(cli: &RenderCli) {
         file.values = Some(values);
         render_file.files = vec![file];
     }
-
+    else {
+        let config = if let Some(config_file_path) = &cli.config_file {
+            std::fs::read_to_string(&config_file_path).unwrap()
+        }
+        else {
+            std::fs::read_to_string("./config.yml").unwrap()
+        };
+        render_file = BakeCliRenderFile::from_yaml(&config);
+    }
     render_file.render_templates();
 }
 

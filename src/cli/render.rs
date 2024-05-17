@@ -11,4 +11,6 @@ pub struct RenderCli {
     /// Values to render the template in the form of key=value
     #[arg(required = false)]
     pub values: Vec<String>,
+    #[arg(short, long)]
+    pub config_file: Option<String>,
 }

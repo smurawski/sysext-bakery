@@ -1,0 +1,14 @@
+[Unit]
+Description=My Random Service
+Documentation=https://somewhere.over.the.rainbow.dev
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/some-executable
+Restart=always
+StartLimitInterval=0
+RestartSec=10
+
+[Install]
+WantedBy=
