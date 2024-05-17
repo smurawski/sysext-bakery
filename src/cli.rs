@@ -18,6 +18,8 @@ pub struct BakeCli {
     pub arch: Option<Arch>,
     #[arg(short, long, action = ArgAction::SetTrue)]
     pub reload: bool,
+    #[arg(long, hidden = true)]
+    pub test: bool,
 }
 
 #[derive(Serialize, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum, Debug)]

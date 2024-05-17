@@ -1,6 +1,6 @@
 use crate::{
     cli::{BakeCli, FileSystemFormat},
-    commands::Command,
+    native_commands::Command,
 };
 use anyhow::Result;
 

@@ -10,7 +10,15 @@ use std::{
 mod filesystem;
 use filesystem::create_filesystem;
 
+fn run_test(cli: &BakeCli) -> Result<()> {
+    println!("Running tests...");
+    Ok(())
+}
+
 pub fn bake_sysext(cli: &BakeCli) -> Result<()> {
+    if cli.test {
+        return run_test(&cli);
+    }
     let sys_ext_dir = create_extension_directory(&cli.name);
     create_extension_release_file(&cli, &sys_ext_dir);
     create_filesystem(&cli).unwrap();

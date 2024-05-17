@@ -4,7 +4,7 @@ use env_logger::Env;
 
 mod bake;
 mod cli;
-mod commands;
+mod native_commands;
 
 use cli::BakeCli;
 
