@@ -1,0 +1,10 @@
+Steps:
+[ ] Render templates
+[ ] Build docker container (need builder container with filesystem tools)
+[ ] Inject rendered templates
+[ ] Optional: step into shell in container for debugging
+[ ] Report files to be baked
+[X] Bake file system (and extension release)
+[ ] Extract the baked sysext
+[ ] Render butane yaml/transpile to ignition
+[ ] Push to github release? Local dev/test workflow?

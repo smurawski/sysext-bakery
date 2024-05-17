@@ -1,0 +1,11 @@
+---
+values:
+  blog_url: https://somewhere.over.the.rainbow.dev
+  documentation_url: https://somewhere.over.the.rainbow.dev
+files:
+- template_path: ./tests/samples/sample_template.txt
+  output_path: ./output-one.txt
+  values:
+    wants: network-online.target
+    executable_path: /usr/bin/some-executable
+    

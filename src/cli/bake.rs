@@ -1,7 +1,7 @@
 use clap::{ArgAction, Parser, ValueEnum};
 use serde::Serialize;
 
-#[derive(Parser, Serialize)]
+#[derive(Debug, Parser, Serialize)]
 #[command(version, about, long_about = None)]
 pub struct BakeCli {
     /// Name of the sys-ext to build.
@@ -18,8 +18,6 @@ pub struct BakeCli {
     pub arch: Option<Arch>,
     #[arg(short, long, action = ArgAction::SetTrue)]
     pub reload: bool,
-    #[arg(long, hidden = true)]
-    pub test: bool,
 }
 
 #[derive(Serialize, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum, Debug)]
